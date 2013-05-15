@@ -60,24 +60,46 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
 class GenericURIScheme extends AbstractURIScheme
 {
     /**
+     *  A filter for valid name type bitmasks
+     *
+     *  @var string
+     */
+    const NAME_TYPE_FILTER = 0x03;
+
+    /**
      *  Obtain a scheme intstance
      *
      *  The getInstance() method is used to obtain a generic URI scheme
-     *  instance for the given $name, which must be a string starting
-     *  with a latin character, followed by any number of latin characters,
-     *  digits, plus signs (+), minus signs (-) and/or dots.
+     *  instance for the given $scheme mnemonic, which must be a string
+     *  starting with a latin character, followed by any number of latin
+     *  characters, digits, plus signs (+), minus signs (-) and/or dots.
      *
-     *  @param  string  $name
+     *  @param  string      $scheme         The mnemonic name
+     *  @param  string      $abbreviation   The abbreviated name
+     *  @param  string      $name           The english name
      *
-     *  @throws InvalidArgumentException
-     *          Raised in case the given $name does not fulfill the
+     *  @return \Lousson\URI\Generic\GenericURIScheme
+     *          An URI scheme instance is returned on success
+     *
+     *  @throws \InvalidArgumentException
+     *          Raised in case the given $scheme does not fulfill the
      *          aforementioned constraints
      */
-    public static function create($name)
+    public static function create(
+        $scheme, $abbreviation = null, $name = null)
     {
         $util = BuiltinURIUtil::getInstance();
-        $util->parseURIScheme($name);
-        $scheme = new static($name);
+        $mnemonic = $util->parseURIScheme($scheme);
+
+        if (null === $abbreviation) {
+            $abbreviation = strtoupper($mnemonic);
+        }
+
+        if (null === $name) {
+            $name = $abbreviation;
+        }
+
+        $scheme = new static($mnemonic, $abbreviation, $name);
         return $scheme;
     }
 
@@ -111,9 +133,13 @@ class GenericURIScheme extends AbstractURIScheme
      */
     final public function getName($type = self::NAME_TYPE_MNEMONIC)
     {
-        $name = isset($this->names[$type])
-            ? $this->names[$type]
-            : $this->names[self::NAME_TYPE_ABBREVIATION];
+        static $properties = array(
+            "mnemonic", "abbreviation", "name"
+        );
+
+        $index = self::NAME_TYPE_FILTER & (int) $type;
+        $property = $properties[$index];
+        $name = $this->{$property};
 
         return $name;
     }
@@ -125,19 +151,36 @@ class GenericURIScheme extends AbstractURIScheme
      *  within getInstance() exclusively. It transferts the scheme name to
      *  the instance's internals.
      *
-     *  @param  string  $name
+     *  @param  string      $mnemonic       The mnemonic name
+     *  @param  string      $abbreviation   The abbreviated name
+     *  @param  string      $name           The english name
      */
-    final private function __construct($name)
+    final private function __construct($mnemonic, $abbreviation, $name)
     {
-        $this->names[self::NAME_TYPE_MNEMONIC] = strtolower($name);
-        $this->names[self::NAME_TYPE_ABBREVIATION] = strtoupper($name);
+        $this->mnemonic = (string) $mnemonic;
+        $this->abbreviation = (string) $abbreviation;
+        $this->name = (string) $name;
     }
 
     /**
-     *  A set of names for getName()
+     *  The scheme's mnemonic name
      *
-     *  @var array
+     *  @var string
      */
-    private $names;
+    private $mnemonic;
+
+    /**
+     *  The scheme's abbreviated name
+     *
+     *  @var string
+     */
+    private $abbreviation;
+
+    /**
+     *  The scheme's English name
+     *
+     *  @var string
+     */
+    private $name;
 }
 
