@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\Generic\GenericURITest class
+ *  Lousson\URI\Generic\GenericURITest class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -44,7 +44,7 @@ namespace Lousson\URI\Generic;
 
 /** Dependencies: */
 use Lousson\URI\AbstractURITest;
-use Lousson\URI\Generic\GenericURIFactory;
+use Lousson\URI\Builtin\BuiltinURIFactory;
 
 /**
  *  A test case for generic URIs
@@ -65,7 +65,7 @@ class GenericURITest extends AbstractURITest
      */
     public function getURIFactory()
     {
-        $factory = new GenericURIFactory();
+        $factory = new BuiltinURIFactory();
         return $factory;
     }
 }

@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AbstractURITest class
+ *  Lousson\URI\AbstractURITest class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -181,7 +181,7 @@ abstract class AbstractURITest extends AbstractURIFactoryTest
      *
      *  The testValidation() method is used to verify whether the URI
      *  validation works as expected. That is, if the invalid/malformed
-     *  $lexical URI representation causes an \InvalidArgumentException
+     *  $lexical URI representation causes an InvalidArgumentException
      *  to get raised.
      *
      *  @param  string      $lexical    The URIs lexical representation

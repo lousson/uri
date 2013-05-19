@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\Builtin\BuiltinURIUtilTest class
+ *  Lousson\URI\Builtin\BuiltinURIUtilTest class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -48,7 +48,7 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
 use PHPUnit_Framework_TestCase;
 
 /**
- *  A test case for the BuiltinURI class
+ *  A test case for the BuiltinURIUtil class
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri
@@ -135,7 +135,7 @@ class BuiltinURIUtilTest extends PHPUnit_Framework_TestCase
      *
      *  The testParseURIValidation() method is used to verify whether the
      *  URI validation works as expected. That is, if the invalid/malformed
-     *  $lexical URI representation causes an \InvalidArgumentException
+     *  $lexical URI representation causes an InvalidArgumentException
      *  to get raised.
      *
      *  @param  string      $lexical    The URI string

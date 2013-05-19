@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AbstractURIFactoryTest class
+ *  Lousson\URI\AbstractURIFactoryTest class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project

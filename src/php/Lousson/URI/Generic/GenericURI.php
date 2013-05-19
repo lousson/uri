@@ -33,7 +33,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\Generic\GenericURI class
+ *  Lousson\URI\Generic\GenericURI class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2011, Mathias J. Hennig
@@ -51,8 +51,9 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
 /**
  *  A generic URI implementation
  *
- *  The \Lousson\URI\Generic\GenericURI class is an implementation of the
- *  \Lousson\URI\AnyURI interface that can represent any well-formed URI.
+ *  The GenericURI class is an implementation of the AnyURI interface.
+ *  It can represent any well-formed URI, although it doesn't consider
+ *  scheme-specific constraints, if any.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri
@@ -62,9 +63,8 @@ class GenericURI extends AbstractURI
     /**
      *  Create a generic URI instance
      *
-     *  The create() method is used to create an instance of the
-     *  \Lousson\URI\Generic\GenericURI class that represents the $lexical
-     *  $uri provided.
+     *  The create() method is used to create an instance of the GenericURI
+     *  class that represents the $lexical URI provided.
      *
      *  @param  string      $lexical    The URI's lexical representation
      *
@@ -97,7 +97,7 @@ class GenericURI extends AbstractURI
      *
      *  @throws \InvalidArgumentException
      *          Raised in case the given $name is not one of the token
-     *          defined by the \Lousson\URI\AnyURI::PART_* constants
+     *          defined by the Lousson\URI\AnyURI::PART_* constants
      *
      *  @link   http://tools.ietf.org/html/rfc3986#section-3
      *  @link   http://php.net/manual/function.parse-url.php
@@ -127,7 +127,7 @@ class GenericURI extends AbstractURI
      *
      *  The constructor has been declared private and is accessed from
      *  within getInstance() only. It transfers the given URI's $lexical
-     *  representation and it's $parts to the instance's internals.
+     *  representation and it's $parts to the instance's members.
      *
      *  @param  string      $lexical    The URI's lexical representation
      *  @param  array       $parts      The URI's parts

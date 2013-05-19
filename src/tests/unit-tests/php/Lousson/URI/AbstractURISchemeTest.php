@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AbstractURISchemeTest class
+ *  Lousson\URI\AbstractURISchemeTest class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -67,7 +67,7 @@ abstract class AbstractURISchemeTest extends AbstractURIFactoryTest
      */
     public function getWellformedURISchemes()
     {
-        return array("urn", "http", "https", "mailto",);
+        return array("urn", "http", "https", "mailto", "example",);
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class AbstractURISchemeTest extends AbstractURIFactoryTest
      *  test-methods expecting three parameters;
      *
      *- A valid URI scheme mnemonic or abbreviation
-     *- One of the \Lousson\URI\AnyURIScheme::NAME_* constants
+     *- One of the Lousson\URI\AnyURIScheme::NAME_* constants
      *- The value the scheme's getName() method must return
      *
      *  @return array
@@ -161,7 +161,7 @@ abstract class AbstractURISchemeTest extends AbstractURIFactoryTest
      *
      *  The testValidation() method is used to verify whether the name
      *  validation works. That is, if the invalid $name provided is not
-     *  accepted but an \InvalidArgumentException is raised.
+     *  accepted but an InvalidArgumentException is raised.
      *
      *  @param  string      $name       The input URI scheme name
      *

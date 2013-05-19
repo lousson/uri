@@ -33,7 +33,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\Builtin\BuiltinURIUtil class
+ *  Lousson\URI\Builtin\BuiltinURIUtil class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2012 - 2013, The Lousson Project
@@ -50,9 +50,9 @@ use InvalidArgumentException;
 /**
  *  Utilities for common URI operations
  *
- *  The \Lousson\URI\Builtin\BuiltinURIUtil class is a container for
- *  utility methods that ease common URI operations, especially those that
- *  are required to implement the interfaces in the \Lousson\URI namespace.
+ *  The BuiltinURIUtil class is a container for utility methods that ease
+ *  common URI operations, especially those that are required to implement
+ *  the interfaces in the Lousson\URI namespace.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri

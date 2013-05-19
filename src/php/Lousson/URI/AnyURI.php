@@ -33,7 +33,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AnyURI interface
+ *  Lousson\URI\AnyURI interface declaration
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2011, Mathias J. Hennig
@@ -47,8 +47,7 @@ namespace Lousson\URI;
 /**
  *  An interface for URIs
  *
- *  The \Lousson\URI\AnyURI interface declares an API for classes
- *  representing URIs.
+ *  The AnyURI interface declares an API for classes representing URIs.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri
@@ -152,7 +151,7 @@ interface AnyURI
      *
      *  @throws \InvalidArgumentException
      *          Raised in case the given $name is not one of the token
-     *          defined by the \Lousson\URI\AnyURI::PART_* constants
+     *          defined by the Lousson\URI\AnyURI::PART_* constants
      *
      *  @link   http://tools.ietf.org/html/rfc3986#section-3
      *  @link   http://php.net/manual/function.parse-url.php

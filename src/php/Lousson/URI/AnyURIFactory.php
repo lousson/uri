@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AnyURIFactory interface
+ *  Lousson\URI\AnyURIFactory interface declaration
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2012 - 2013, The Lousson Project
@@ -45,8 +45,8 @@ namespace Lousson\URI;
 /**
  *  An interface for URI factories
  *
- *  The \Lousson\URI\AnyURIFactory interface declares an API for classes
- *  capable of creating URI and URI scheme instances.
+ *  The AnyURIFactory interface declares an API for classes capable of
+ *  creating URI, and scheme instances.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri
@@ -56,8 +56,8 @@ interface AnyURIFactory
     /**
      *  Obtain an URI instance
      *
-     *  The getURI() method returns an instance of the \Lousson\URI\AnyURI
-     *  interface representing the URI provided in it's $lexical form.
+     *  The getURI() method returns an instance of the AnyURI interface
+     *  representing the URI provided in it's $lexical form.
      *
      *  @param  string      $lexical    The URI's lexical representation
      *
@@ -72,8 +72,8 @@ interface AnyURIFactory
     /**
      *  Obtain an URI scheme instance
      *
-     *  The getURIScheme() method returns a \Lousson\URI\AnyURIScheme
-     *  instance representing the URI scheme associated with the given
+     *  The getURIScheme() method returns an instance of the AnyURIScheme
+     *  interface representing the URI scheme associated with the given
      *  $name.
      *
      *  @param  string      $name       The name of the scheme

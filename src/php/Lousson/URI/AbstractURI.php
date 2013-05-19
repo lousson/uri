@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AbstractURI class
+ *  Lousson\URI\AbstractURI class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2012 - 2013, The Lousson Project
@@ -48,12 +48,9 @@ use Lousson\URI\AnyURI;
 /**
  *  An abstract URI implementation
  *
- *  The \Lousson\URI\AbstractURI class implements the API defined by the
- *  \Lousson\URI\AnyURI interface as far as possible - without assuming
- *  too many implementation details.
- *  It can be used as base for custom URI implementations, where it may
- *  also improve the compatibility to the \Lousson\URI\AnyURI interface -
- *  even in case of future changes.
+ *  The AbstractURI class implements the API defined by the AnyURI
+ *  interface as far as possible - without assuming too many implementation
+ *  details.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri

@@ -33,7 +33,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\AnyURIScheme interface
+ *  Lousson\URI\AnyURIScheme interface declaration
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2011, Mathias J. Hennig
@@ -47,8 +47,8 @@ namespace Lousson\URI;
 /**
  *  An interface for URI schemes
  *
- *  The \Lousson\URI\AnyURIScheme interface declares an API for classes
- *  representing URI schemes.
+ *  The AnyURIScheme interface declares an API for classes representing
+ *  URI schemes.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri
@@ -58,7 +58,7 @@ interface AnyURIScheme
     /**
      *  The id of the scheme name type "mnemonic"
      *
-     *  @see    \Lousson\URI\AnyURIScheme::getName()
+     *  @see    Lousson\URI\AnyURIScheme::getName()
      *  @var    int
      */
     const NAME_TYPE_MNEMONIC = 0x000;
@@ -66,7 +66,7 @@ interface AnyURIScheme
     /**
      *  The id of the scheme name type "abbreviation"
      *
-     *  @see    \Lousson\URI\AnyURIScheme::getName()
+     *  @see    Lousson\URI\AnyURIScheme::getName()
      *  @var    int
      */
     const NAME_TYPE_ABBREVIATION = 0x001;
@@ -74,7 +74,7 @@ interface AnyURIScheme
     /**
      *  The id of the scheme name type "english"
      *
-     *  @see    \Lousson\URI\AnyURIScheme::getName()
+     *  @see    Lousson\URI\AnyURIScheme::getName()
      *  @var    int
      */
     const NAME_TYPE_ENGLISH = 0x002;
@@ -86,15 +86,15 @@ interface AnyURIScheme
      *  object represents. Depending on the requested $type, this is one
      *  of the following phenotypes:
      *
-     *- \Lousson\URI\AnyURIScheme::NAME_TYPE_MNEMONIC
+     *- Lousson\URI\AnyURIScheme::NAME_TYPE_MNEMONIC
      *  Returns the scheme's mnemonic that is used as prefix for URIs
      *  (exluding the colon), e.g. "urn" or "http"
      *
-     *- \Lousson\URI\AnyURIScheme::NAME_TYPE_ABBREVIATION
+     *- Lousson\URI\AnyURIScheme::NAME_TYPE_ABBREVIATION
      *  Returns the official abbreviation, if any. Otherwise just returns
      *  an upper-case representation of NAME_TYPE_MNEMONIC, e.g. "HTTP"
      *
-     *- \Lousson\URI\AnyURIScheme::NAME_TYPE_ENGLISH
+     *- Lousson\URI\AnyURIScheme::NAME_TYPE_ENGLISH
      *  Returns the scheme's full English name. In case of HTTP, for
      *  example, this would be "Hypertext Transfer Protocol"
      *

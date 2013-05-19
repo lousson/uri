@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\Generic\GenericURIScheme class
+ *  Lousson\URI\Generic\GenericURIScheme class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2012 - 2013, The Lousson Project
@@ -49,10 +49,10 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
 /**
  *  A generic URI scheme implementation
  *
- *  The \Lousson\URI\Generic\GenericURIScheme class is an implementation of
- *  the \Lousson\URI\AnyURIScheme. Any scheme with a well-formed mnemonic
- *  can be represented by this class, although the instance won't be aware
- *  of any constraints associated with the scheme specification, if any.
+ *  The GenericURIScheme class is an implementation of the AnyURIScheme
+ *  interface. It can represent any scheme with a well-formed mnemonic,
+ *  although the instance won't be aware of constraints associated with
+ *  the scheme specification, if any.
  *
  *  @since      lousson/uri-0.1.0
  *  @package    org.lousson.uri
@@ -148,8 +148,8 @@ class GenericURIScheme extends AbstractURIScheme
      *  Constructor
      *
      *  The constructor has been declared private and is invoked from
-     *  within getInstance() exclusively. It transferts the scheme name to
-     *  the instance's internals.
+     *  within the create() method exclusively. It transfers the scheme
+     *  names to the instance's members.
      *
      *  @param  string      $mnemonic       The mnemonic name
      *  @param  string      $abbreviation   The abbreviated name
