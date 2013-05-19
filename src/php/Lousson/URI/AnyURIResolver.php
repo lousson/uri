@@ -2,7 +2,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=75: *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Copyright (c) 2012 - 2013, The Lousson Project                        *
+ * Copyright (c) 2013, The Lousson Project                               *
  *                                                                       *
  * All rights reserved.                                                  *
  *                                                                       *
@@ -32,69 +32,68 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\AnyURIFactory interface declaration
+ *  Lousson\URI\AnyURIResolver interface declaration
  *
  *  @package    org.lousson.uri
- *  @copyright  (c) 2012 - 2013, The Lousson Project
+ *  @copyright  (c) 2013, The Lousson Project
  *  @license    http://opensource.org/licenses/bsd-license.php New BSD License
  *  @author     Mathias J. Hennig <mhennig at quirkies.org>
  *  @filesource
  */
 namespace Lousson\URI;
 
+/** Dependencies: */
+use Lousson\URI\AnyURI;
+
 /**
- *  An interface for URI factories
+ *  An interface for URI resolvers
  *
- *  The AnyURIFactory interface declares an API for classes capable of
- *  creating URI, scheme, and resolver instances.
+ *  The AnyURIResolver interface declares an API for classes that implement
+ *  URI resolvers.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/uri-0.1.1
  *  @package    org.lousson.uri
  */
-interface AnyURIFactory
+interface AnyURIResolver
 {
     /**
-     *  Obtain an URI instance
+     *  Resolve an URI string
      *
-     *  The getURI() method returns an instance of the AnyURI interface
-     *  representing the URI provided in it's $lexical form.
+     *  The resolve() method analyses the given $lexical URI, returning a
+     *  list of zero or more items, each of whose is an instance of the
+     *  AnyURI interface, representing a distinct resolved form of the $uri
+     *  provided. In case the resolver does not implement a process to
+     *  resolve URIs of the particuar type, it may return an empty array.
      *
-     *  @param  string      $lexical    The URI's lexical representation
+     *  @param  string      $lexical    The URI string to resolve
      *
-     *  @return \Lousson\URI\AnyURI
-     *          An URI instance is returned on success
+     *  @return array
+     *          A list of URI instances is returned on success
      *
-     *  @throws \InvalidArgumentException
-     *          Raised in case the $lexical URI is malformed
+     *  @throws \Lousson\URI\AnyURIException
+     *          Raised in case the $lexical URI is malformed or invalid
+     *          in general, or in if an internal error is encountered
      */
-    public function getURI($lexical);
+    public function resolve($lexical);
 
     /**
-     *  Obtain an URI scheme instance
+     *  Resolve an URI instance
      *
-     *  The getURIScheme() method returns an instance of the AnyURIScheme
-     *  interface representing the URI scheme associated with the given
-     *  $name.
+     *  The resolveURI() method analyzes the given $uri instance, returning
+     *  a list of zero or more items, each of whose is an URI instance
+     *  itself, representing a distinct resolved form of the $uri.
+     *  In case there resolve does not implement a process to resolve URIs
+     *  of the particuar type, it returns an empty array.
      *
-     *  @param  string      $name       The name of the scheme
+     *  @param  \Lousson\URI\AnyURI     $uri    The URI instance to resolve
      *
-     *  @return \Lousson\URI\AnyURIScheme
-     *          An URI scheme instance is returned on success
+     *  @return array
+     *          A list of URI instances is returned on success
      *
-     *  @throws \InvalidArgumentException
-     *          Raised in case the URI scheme $name is malformed
+     *  @throws \Lousson\URI\AnyURIException
+     *          Raised in case the $lexical URI is malformed or invalid
+     *          in general, or in if an internal error is encountered
      */
-    public function getURIScheme($name);
-
-    /**
-     *  Obtain an URI resolver instance
-     *
-     *  The getURIResolver() method returns an AnyURIResolver instance,
-     *  used to transform URIs into a list of resource locations.
-     *
-     *  @return \Lousson\URI\AnyURIResolver
-     *          An URI resolver instance is returned on success
-     */
-    public function getURIResolver();
+    public function resolveURI(AnyURI $uri);
 }
 

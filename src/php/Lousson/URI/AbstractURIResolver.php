@@ -2,7 +2,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=75: *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Copyright (c) 2012 - 2013, The Lousson Project                        *
+ * Copyright (c) 2013, The Lousson Project                               *
  *                                                                       *
  * All rights reserved.                                                  *
  *                                                                       *
@@ -32,69 +32,65 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\AnyURIFactory interface declaration
+ *  Lousson\URI\AbstractURIResolver class definition
  *
  *  @package    org.lousson.uri
- *  @copyright  (c) 2012 - 2013, The Lousson Project
+ *  @copyright  (c) 2013, The Lousson Project
  *  @license    http://opensource.org/licenses/bsd-license.php New BSD License
  *  @author     Mathias J. Hennig <mhennig at quirkies.org>
  *  @filesource
  */
 namespace Lousson\URI;
 
+/** Dependencies: */
+use Lousson\URI\AnyURIResolver;
+
 /**
- *  An interface for URI factories
+ *  An abstract URI resolver implementation
  *
- *  The AnyURIFactory interface declares an API for classes capable of
- *  creating URI, scheme, and resolver instances.
+ *  The AbstractURIResolver class implements the API defined by the
+ *  Lousson\URI\AnyURIResolver interface as far as possible, without
+ *  assuming too many implementation details.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/uri-0.1.1
  *  @package    org.lousson.uri
  */
-interface AnyURIFactory
+abstract class AbstractURIResolver implements AnyURIResolver
 {
     /**
-     *  Obtain an URI instance
+     *  Obtain an URI factory instance
      *
-     *  The getURI() method returns an instance of the AnyURI interface
-     *  representing the URI provided in it's $lexical form.
+     *  The getURIFactory() method is used to obtain the URI factory
+     *  that is associated with the URI resolver.
      *
-     *  @param  string      $lexical    The URI's lexical representation
-     *
-     *  @return \Lousson\URI\AnyURI
-     *          An URI instance is returned on success
-     *
-     *  @throws \InvalidArgumentException
-     *          Raised in case the $lexical URI is malformed
+     *  @return \Lousson\URI\AnyURIFactory
      */
-    public function getURI($lexical);
+    abstract public function getURIFactory();
 
     /**
-     *  Obtain an URI scheme instance
+     *  Resolve an URI string
      *
-     *  The getURIScheme() method returns an instance of the AnyURIScheme
-     *  interface representing the URI scheme associated with the given
-     *  $name.
+     *  The resolve() method analyzes the given $lexical URI and returns a
+     *  list of zero or more items, each of whose is an URI string itself,
+     *  representing a distinct resolved form of the $uri.
+     *  In case there resolve does not implement a process to resolve URIs
+     *  of the particuar type, it returns an empty array.
      *
-     *  @param  string      $name       The name of the scheme
+     *  @param  string      $lexical    The URI string to resovle
      *
-     *  @return \Lousson\URI\AnyURIScheme
-     *          An URI scheme instance is returned on success
+     *  @return array
+     *          A list of URI strings is returned on success
      *
-     *  @throws \InvalidArgumentException
-     *          Raised in case the URI scheme $name is malformed
+     *  @throws \Lousson\URI\AnyURIException
+     *          Raised in case the $lexical URI is malformed or invalid
+     *          in general, or in if an internal error is encountered
      */
-    public function getURIScheme($name);
-
-    /**
-     *  Obtain an URI resolver instance
-     *
-     *  The getURIResolver() method returns an AnyURIResolver instance,
-     *  used to transform URIs into a list of resource locations.
-     *
-     *  @return \Lousson\URI\AnyURIResolver
-     *          An URI resolver instance is returned on success
-     */
-    public function getURIResolver();
+    final public function resolve($lexical)
+    {
+        $factory = $this->getURIFactory();
+        $uri = $factory->getURI($lexical);
+        $uriList = $this->resolveURI($uri);
+        return $uriList;
+    }
 }
 

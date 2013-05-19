@@ -45,6 +45,7 @@ namespace Lousson\URI\Builtin;
 /** Dependencies: */
 use Lousson\URI\AnyURIFactory;
 use Lousson\URI\AnyURI;
+use Lousson\URI\Generic\GenericURIResolver;
 use Lousson\URI\Generic\GenericURIScheme;
 use Lousson\URI\Generic\GenericURI;
 
@@ -52,8 +53,8 @@ use Lousson\URI\Generic\GenericURI;
  *  A factory for builtin URI modules
  *
  *  The BuiltinURIFactory class is the default implementation of the
- *  AnyURIFacory interface. It has been introduced to provide various
- *  builtin URI scheme information items.
+ *  AnyURIFacory interface. It has been introduced to provide a builtin
+ *  URI resolver, as well as various URI scheme information items.
  *
  *  @since      lousson/uri-0.1.1
  *  @package    org.lousson.uri
@@ -110,6 +111,27 @@ class BuiltinURIFactory implements AnyURIFactory
         );
 
         return $scheme;
+    }
+
+    /**
+     *  Obtain an URI resolver instance
+     *
+     *  The getURIResolver() method returns an AnyURIResolver instance,
+     *  used to transform URIs into a list of resource locations.
+     *
+     *  @return \Lousson\URI\AnyURIResolver
+     *          An URI resolver instance is returned on success
+     */
+    public function getURIResolver()
+    {
+        $callback = function(AnyURI $uri) {
+            $scheme = $uri->getPart(AnyURI::PART_SCHEME);
+            $result = strcasecmp("urn", $scheme)? array($uri): array();
+            return $result;
+        };
+
+        $resolver = new GenericURIResolver($this, $callback);
+        return $resolver;
     }
 
     /**

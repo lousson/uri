@@ -93,6 +93,30 @@ abstract class AbstractURIFactoryTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     *  Obtain a URI resolver instance
+     *
+     *  The getURIResolver() method returns an instance of the URI resolver
+     *  interface that is obtained from the factory associated with the test
+     *  case. It will also ensure the resolver object being an instance of
+     *  the URI interface.
+     *
+     *  @throws \PHPUnit_Framework_AssertionFailedError
+     *          Raised in case an assertion has failed
+     */
+    final public function getURIResolver()
+    {
+        $factory = $this->getRealURIFactory();
+        $resolver = $factory->getURIResolver();
+        $this->assertInstanceOf(
+            "Lousson\\URI\\AnyURIResolver", $resolver, sprintf(
+            "The %s::getURI() method must return an intance of ".
+            "the AnyURIResolver interface", get_class($factory)
+        ));
+
+        return $resolver;
+    }
+
+    /**
      *  Obtain a URI scheme instance
      *
      *  The getURI() method returns an instance of the URI interface that
