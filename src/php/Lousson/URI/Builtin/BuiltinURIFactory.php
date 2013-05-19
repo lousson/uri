@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Definition of the \Lousson\URI\Builtin\BuiltinURIFactory class
+ *  Lousson\URI\Builtin\BuiltinURIFactory class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -43,28 +43,49 @@
 namespace Lousson\URI\Builtin;
 
 /** Dependencies: */
+use Lousson\URI\AnyURIFactory;
+use Lousson\URI\AnyURI;
 use Lousson\URI\Generic\GenericURIScheme;
-use Lousson\URI\Generic\GenericURIFactory;
+use Lousson\URI\Generic\GenericURI;
 
 /**
  *  A factory for builtin URI modules
  *
- *  The \Lousson\URI\Builtin\BuiltinURIFactory class has been implemented
- *  to provide a frontend to the builtin implementations of various URI
- *  scheme information.
+ *  The BuiltinURIFactory class is the default implementation of the
+ *  AnyURIFacory interface. It has been introduced to provide various
+ *  builtin URI scheme information items.
  *
  *  @since      lousson/uri-0.1.1
  *  @package    org.lousson.uri
  *  @link       http://www.iana.org/assignments/uri-schemes.html
  */
-class BuiltinURIFactory extends GenericURIFactory
+class BuiltinURIFactory implements AnyURIFactory
 {
+    /**
+     *  Obtain an URI instance
+     *
+     *  The getURI() method returns an instance of the AnyURI interface,
+     *  representing the URI provided in it's $lexical form.
+     *
+     *  @param  string      $lexical    The URI's lexical representation
+     *
+     *  @return \Lousson\URI\AnyURI
+     *          An URI instance is returned on success
+     *
+     *  @throws \InvalidArgumentException
+     *          Raised in case the $lexical URI is malformed
+     */
+    public function getURI($lexical)
+    {
+        $uri = GenericURI::create($lexical);
+        return $uri;
+    }
+
     /**
      *  Obtain an URI scheme instance
      *
-     *  The getURIScheme() method returns a \Lousson\URI\AnyURIScheme
-     *  instance representing the URI scheme associated with the given
-     *  $name.
+     *  The getURIScheme() method returns an AnyURIScheme instance,
+     *  representing the URI scheme associated with the given $name.
      *
      *  @param  string      $name       The name of the scheme
      *
@@ -130,7 +151,7 @@ class BuiltinURIFactory extends GenericURIFactory
         "news" => array("NEWS", "USENET News"),
         "nfs" => array("NFS", "Network File System Protocol"),
         "nntp" => array("NNTP", "USENET News using NNTP Access"),
-        "opaquelocktoken" => array("OPAQUELOCKTOKEN", "Opaquelocktokent"),
+        "opaquelocktoken" => array("OPAQUELOCKTOKEN", "Opaquelocktoken"),
         "pop" => array("POP", "Post Office Protocol V3"),
         "pres" => array("PRES", "Presence"),
         "rtsp" => array("RTSP", "Real Time Streaming Protocol"),
