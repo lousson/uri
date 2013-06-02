@@ -14,6 +14,13 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/bin</directory>
             <directory suffix=".php">src/php</directory>
+            <exclude>
+              <file>src/php/Lousson/URI/AnyURIScheme.php</file>
+              <file>src/php/Lousson/URI/AnyURIResolver.php</file>
+              <file>src/php/Lousson/URI/AnyURIException.php</file>
+              <file>src/php/Lousson/URI/AnyURI.php</file>
+              <file>src/php/Lousson/URI/AnyURIFactory.php</file>
+            </exclude>
         </whitelist>
     </filter>
     <logging>
