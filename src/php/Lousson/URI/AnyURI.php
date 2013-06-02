@@ -149,7 +149,7 @@ interface AnyURI
      *          The value associated with the requested URI part is
      *          returned on success
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the given $name is not one of the token
      *          defined by the Lousson\URI\AnyURI::PART_* constants
      *

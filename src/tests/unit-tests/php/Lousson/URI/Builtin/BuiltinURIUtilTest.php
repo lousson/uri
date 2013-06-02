@@ -135,16 +135,16 @@ class BuiltinURIUtilTest extends PHPUnit_Framework_TestCase
      *
      *  The testParseURIValidation() method is used to verify whether the
      *  URI validation works as expected. That is, if the invalid/malformed
-     *  $lexical URI representation causes an InvalidArgumentException
+     *  $lexical URI representation causes an \Lousson\URI\AnyURIException
      *  to get raised.
      *
      *  @param  string      $lexical    The URI string
      *
      *  @dataProvider       provideInvalidURIs
-     *  @expectedException  InvalidArgumentException
+     *  @expectedException  Lousson\URI\AnyURIException
      *  @test
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the test is successful
      */
     public function testParseURIValidation($lexical)

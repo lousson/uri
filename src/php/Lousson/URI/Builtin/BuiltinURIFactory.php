@@ -73,7 +73,7 @@ class BuiltinURIFactory implements AnyURIFactory
      *  @return \Lousson\URI\AnyURI
      *          An URI instance is returned on success
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the $lexical URI is malformed
      */
     public function getURI($lexical)
@@ -93,7 +93,7 @@ class BuiltinURIFactory implements AnyURIFactory
      *  @return \Lousson\URI\AnyURIScheme
      *          An URI scheme instance is returned on success
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the URI scheme $name is malformed
      */
     public function getURIScheme($name)

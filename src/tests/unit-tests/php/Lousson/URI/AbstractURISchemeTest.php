@@ -161,15 +161,15 @@ abstract class AbstractURISchemeTest extends AbstractURIFactoryTest
      *
      *  The testValidation() method is used to verify whether the name
      *  validation works. That is, if the invalid $name provided is not
-     *  accepted but an InvalidArgumentException is raised.
+     *  accepted but an \Lousson\URI\AnyURIException is raised.
      *
      *  @param  string      $name       The input URI scheme name
      *
      *  @dataProvider       provideInvalidURISchemeNames
-     *  @expectedException  InvalidArgumentException
+     *  @expectedException  Lousson\URI\AnyURIException
      *  @test
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the test is successful
      */
     public function testValidation($name)

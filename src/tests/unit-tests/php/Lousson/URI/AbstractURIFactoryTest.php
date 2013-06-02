@@ -73,7 +73,7 @@ abstract class AbstractURIFactoryTest extends PHPUnit_Framework_TestCase
      *
      *  @param  string      $lexical    The URI's lexical representation
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the given $lexical value is invalid
      *
      *  @throws \PHPUnit_Framework_AssertionFailedError
@@ -126,7 +126,7 @@ abstract class AbstractURIFactoryTest extends PHPUnit_Framework_TestCase
      *
      *  @param  string      $name       The URI scheme's name
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the given $name is invalid
      *
      *  @throws \PHPUnit_Framework_AssertionFailedError

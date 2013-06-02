@@ -81,7 +81,7 @@ class GenericURIScheme extends AbstractURIScheme
      *  @return \Lousson\URI\Generic\GenericURIScheme
      *          An URI scheme instance is returned on success
      *
-     *  @throws \InvalidArgumentException
+     *  @throws \Lousson\URI\AnyURIException
      *          Raised in case the given $scheme does not fulfill the
      *          aforementioned constraints
      */

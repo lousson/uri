@@ -2,7 +2,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=75: *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Copyright (c) 2012 - 2013, The Lousson Project                        *
+ * Copyright (c) 2013, The Lousson Project                               *
  *                                                                       *
  * All rights reserved.                                                  *
  *                                                                       *
@@ -32,69 +32,33 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\AnyURIFactory interface declaration
+ *  Lousson\URI\Error\InvalidURIError class definition
  *
  *  @package    org.lousson.uri
- *  @copyright  (c) 2012 - 2013, The Lousson Project
+ *  @copyright  (c) 2013, The Lousson Project
  *  @license    http://opensource.org/licenses/bsd-license.php New BSD License
  *  @author     Mathias J. Hennig <mhennig at quirkies.org>
  *  @filesource
  */
-namespace Lousson\URI;
+namespace Lousson\URI\Error;
+
+/** Dependencies: */
+use Lousson\URI\AnyURIException;
+use Lousson\Error\InvalidArgumentError;
 
 /**
- *  An interface for URI factories
+ *  An exception type for invalid uris
  *
- *  The AnyURIFactory interface declares an API for classes capable of
- *  creating URI, scheme, and resolver instances.
+ *  The InvalidURIError is an exception type raised by the builtin and
+ *  generic implementations of the uri interfaces in case of any errors
+ *  that are caused by invalid uris or arguments passed by the caller.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/uri-0.2.0
  *  @package    org.lousson.uri
  */
-interface AnyURIFactory
+class InvalidURIError
+    extends InvalidArgumentError
+    implements AnyURIException
 {
-    /**
-     *  Obtain an URI instance
-     *
-     *  The getURI() method returns an instance of the AnyURI interface
-     *  representing the URI provided in it's $lexical form.
-     *
-     *  @param  string      $lexical    The URI's lexical representation
-     *
-     *  @return \Lousson\URI\AnyURI
-     *          An URI instance is returned on success
-     *
-     *  @throws \Lousson\URI\AnyURIException
-     *          Raised in case the $lexical URI is malformed
-     */
-    public function getURI($lexical);
-
-    /**
-     *  Obtain an URI scheme instance
-     *
-     *  The getURIScheme() method returns an instance of the AnyURIScheme
-     *  interface representing the URI scheme associated with the given
-     *  $name.
-     *
-     *  @param  string      $name       The name of the scheme
-     *
-     *  @return \Lousson\URI\AnyURIScheme
-     *          An URI scheme instance is returned on success
-     *
-     *  @throws \Lousson\URI\AnyURIException
-     *          Raised in case the URI scheme $name is malformed
-     */
-    public function getURIScheme($name);
-
-    /**
-     *  Obtain an URI resolver instance
-     *
-     *  The getURIResolver() method returns an AnyURIResolver instance,
-     *  used to transform URIs into a list of resource locations.
-     *
-     *  @return \Lousson\URI\AnyURIResolver
-     *          An URI resolver instance is returned on success
-     */
-    public function getURIResolver();
 }
 
