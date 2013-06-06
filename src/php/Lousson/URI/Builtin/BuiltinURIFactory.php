@@ -45,7 +45,7 @@ namespace Lousson\URI\Builtin;
 /** Dependencies: */
 use Lousson\URI\AnyURIFactory;
 use Lousson\URI\AnyURI;
-use Lousson\URI\Generic\GenericURIResolver;
+use Lousson\URI\Builtin\BuiltinURIResolver;
 use Lousson\URI\Generic\GenericURIScheme;
 use Lousson\URI\Generic\GenericURI;
 
@@ -124,13 +124,7 @@ class BuiltinURIFactory implements AnyURIFactory
      */
     public function getURIResolver()
     {
-        $callback = function(AnyURI $uri) {
-            $scheme = $uri->getPart(AnyURI::PART_SCHEME);
-            $result = strcasecmp("urn", $scheme)? array($uri): array();
-            return $result;
-        };
-
-        $resolver = new GenericURIResolver($callback);
+        $resolver = new BuiltinURIResolver($this);
         return $resolver;
     }
 

@@ -47,7 +47,7 @@ use Lousson\URI\AnyURIException;
 use Lousson\Error\InvalidArgumentError;
 
 /**
- *  An exception type for invalid uris
+ *  An exception type for invalid URIs
  *
  *  The InvalidURIError is an exception type raised by the builtin and
  *  generic implementations of the uri interfaces in case of any errors

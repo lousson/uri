@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\Generic\GenericURIResolverTest class definition
+ *  Lousson\URI\Builtin\BuiltinURIResolverTest class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -40,22 +40,20 @@
  *  @author     Mathias J. Hennig <mhennig at quirkies.org>
  *  @filesource
  */
-namespace Lousson\URI\Generic;
+namespace Lousson\URI\Builtin;
 
 /** Dependencies: */
-use Lousson\URI\AnyURI;
 use Lousson\URI\AbstractURIResolverTest;
-use Lousson\URI\Generic\GenericURIFactory;
-use Lousson\URI\Generic\GenericURIResolver;
+use Lousson\URI\Builtin\BuiltinURIFactory;
 
 /**
- *  A test case for generic URI resolvers
+ *  A test case for the builtin URI resolver
  *
  *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  *  @link       http://www.phpunit.de/manual/current/en/
  */
-class GenericURIResolverTest extends AbstractURIResolverTest
+class BuiltinURIResolverTest extends AbstractURIResolverTest
 {
     /**
      *  Obtain the URI factory to test
@@ -67,14 +65,7 @@ class GenericURIResolverTest extends AbstractURIResolverTest
      */
     public function getURIFactory()
     {
-        $callback = function(AnyURI $uri) {
-            $isURN = "urn" === $uri->getPart(AnyURI::PART_SCHEME);
-            return $isURN? array(): array($uri);
-        };
-
-        $resolver = new GenericURIResolver($callback);
-        $factory = new GenericURIFactory($resolver);
-
+        $factory = new BuiltinURIFactory();
         return $factory;
     }
 }

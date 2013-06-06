@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\Generic\GenericURIResolverTest class definition
+ *  Lousson\URI\Generic\GenericURIFactory class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -43,39 +43,54 @@
 namespace Lousson\URI\Generic;
 
 /** Dependencies: */
-use Lousson\URI\AnyURI;
-use Lousson\URI\AbstractURIResolverTest;
-use Lousson\URI\Generic\GenericURIFactory;
-use Lousson\URI\Generic\GenericURIResolver;
+use Lousson\URI\AnyURIResolver;
+use Lousson\URI\Builtin\BuiltinURIFactory;
 
 /**
- *  A test case for generic URI resolvers
+ *  A generic URI factory
+ *
+ *  The GenericURIFactory class is a more generic implementation of the
+ *  URI factory than the builtin one. It allows the URI resolver instance
+ *  returned by getURIResolver() to be a custom one. Other than that, it
+ *  is merely the same as the BuiltinURIFactory.
  *
  *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
- *  @link       http://www.phpunit.de/manual/current/en/
  */
-class GenericURIResolverTest extends AbstractURIResolverTest
+class GenericURIFactory extends BuiltinURIFactory
 {
     /**
-     *  Obtain the URI factory to test
+     *  Create a factory instance
      *
-     *  The getURIFactory() method returns the URI factory instance that
-     *  is used in the tests.
+     *  The constructor requires the caller to provide an URI resolver
+     *  instance that is to be returned in getURIResolver().
      *
-     *  @return \Lousson\URI\AnyURIFactory
+     *  @param  AnyURIResolver      $resolver   The URI resolver instance
      */
-    public function getURIFactory()
+    public function __construct(AnyURIResolver $resolver)
     {
-        $callback = function(AnyURI $uri) {
-            $isURN = "urn" === $uri->getPart(AnyURI::PART_SCHEME);
-            return $isURN? array(): array($uri);
-        };
-
-        $resolver = new GenericURIResolver($callback);
-        $factory = new GenericURIFactory($resolver);
-
-        return $factory;
+        $this->resolver = $resolver;
     }
+
+    /**
+     *  Obtain an URI resolver instance
+     *
+     *  The getURIResolver() method returns an AnyURIResolver instance,
+     *  used to transform URIs into a list of resource locations.
+     *
+     *  @return \Lousson\URI\AnyURIResolver
+     *          An URI resolver instance is returned on success
+     */
+    public function getURIResolver()
+    {
+        return $this->resolver;
+    }
+
+    /**
+     *  The URI resolver instance
+     *
+     *  @var \Lousson\URI\AnyURIResolver
+     */
+    private $resolver;
 }
 

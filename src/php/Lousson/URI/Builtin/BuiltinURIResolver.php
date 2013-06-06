@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\Generic\GenericURIResolver class definition
+ *  Lousson\URI\Builtin\BuiltinURIResolver class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -40,42 +40,82 @@
  *  @author     Mathias J. Hennig <mhennig at quirkies.org>
  *  @filesource
  */
-namespace Lousson\URI\Generic;
+namespace Lousson\URI\Builtin;
 
 /** Dependencies: */
 use Lousson\URI\AnyURIFactory;
 use Lousson\URI\AnyURIResolver;
 use Lousson\URI\AnyURI;
-use Lousson\URI\Builtin\BuiltinURIResolver;
-use Closure;
+use Lousson\URI\Builtin\BuiltinURIFactory;
 
 /**
- *  A generic URI resolver implementation
+ *  The default URI resolver implementation
  *
- *  The GenericURIResolver class is an implementation of the AnyURIResolver
- *  interface that is based on a Closure callback mechanism and, therefore,
- *  suitable for implementing any resolver algorithm.
+ *  The BuiltinURIResolver class is a basic implementation of the
+ *  AnyURIResolver interface. It does not actually resolve URIs, but
+ *  is very useful a stub- or base-implementation.
  *
  *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  */
-class GenericURIResolver extends BuiltinURIResolver
+class BuiltinURIResolver implements AnyURIResolver
 {
     /**
      *  Create an URI resolver instance
      *
      *  The constructor is used to create instances of the generic URI
-     *  resolver, using the provided $callback to actually perform the
-     *  operation behind the resolveURI() method.
+     *  resolver, using the provided $factory to convert lexical URIs to
+     *  AnyURI instances.
      *
-     *  @param  Closure             $callback   The URI callback
-     *  @param  AnyURIFactory       $factory    The URI factory
+     *  @param  AnyURIFactory       $factory    The URI factory instance
      */
-    public function __construct(
-        Closure $callback, AnyURIFactory $factory = null)
+    public function __construct(AnyURIFactory $factory = null)
     {
-        parent::__construct($factory);
-        $this->callback = $callback;
+        if (null === $factory) {
+            $factory = new BuiltinURIFactory();
+        }
+
+        $this->factory = $factory;
+    }
+
+    /**
+     *  Obtain an URI factory instance
+     *
+     *  The getURIFactory() method is used to obtain the URI factory
+     *  that is associated with the URI resolver.
+     *
+     *  @return \Lousson\URI\AnyURIFactory
+     *          An URI factory instance is returned on success
+     */
+    final public function getURIFactory()
+    {
+        return $this->factory;
+    }
+
+    /**
+     *  Resolve an URI string
+     *
+     *  The resolve() method analyzes the given $lexical URI and returns a
+     *  list of zero or more items, each of whose is an URI string itself,
+     *  representing a distinct resolved form of the $uri.
+     *  In case there resolve does not implement a process to resolve URIs
+     *  of the particuar type, it returns an empty array.
+     *
+     *  @param  string      $lexical    The URI string to resovle
+     *
+     *  @return array
+     *          A list of URI strings is returned on success
+     *
+     *  @throws \Lousson\URI\AnyURIException
+     *          Raised in case the $lexical URI is malformed or invalid
+     *          in general, or in if an internal error is encountered
+     */
+    final public function resolve($lexical)
+    {
+        $factory = $this->getURIFactory();
+        $uri = $factory->getURI($lexical);
+        $uriList = $this->resolveURI($uri);
+        return $uriList;
     }
 
     /**
@@ -98,16 +138,15 @@ class GenericURIResolver extends BuiltinURIResolver
      */
     public function resolveURI(AnyURI $uri)
     {
-        $callback = $this->callback;
-        $uriList = $callback($uri);
+        $uriList = array($uri);
         return $uriList;
     }
 
     /**
-     *  The resolver callback
+     *  The URI factory instance
      *
-     *  @var \Closure
+     *  @var \Lousson\URI\AnyURIFactory
      */
-    private $callback;
+    private $factory;
 }
 
