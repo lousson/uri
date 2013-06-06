@@ -54,6 +54,9 @@ use Lousson\URI\Error\InvalidURIError;
  *  common URI operations, especially those that are required to implement
  *  the interfaces in the Lousson\URI namespace.
  *
+ *  Note that this class will, most likely, get converted into a Trait in
+ *  the future!
+ *
  *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
@@ -66,6 +69,7 @@ final class BuiltinURIUtil
      *  class and is used instead of the "new" keyword.
      *
      *  @return \Lousson\URI\Builtin\BuiltinURIUtil
+     *          An URI utility instance is returned on success
      */
     public static function getInstance()
     {
@@ -100,7 +104,7 @@ final class BuiltinURIUtil
      *          Raised in case the URI is malformed or not prefixed with
      *          an URI scheme (including the colon)
      */
-    public function parseURI($uri)
+    public static function parseURI($uri)
     {
         $setup = ini_set("track_errors", true);
         $php_errormsg = null;
@@ -119,7 +123,7 @@ final class BuiltinURIUtil
             throw new InvalidURIError($message);
         }
 
-        $this->extendAuthority($parts);
+        self::extendAuthority($parts);
         return $parts;
     }
 
@@ -139,7 +143,7 @@ final class BuiltinURIUtil
      *  @throws \Lousson\URI\Error\InvalidURIError
      *          Raised in case
      */
-    public function parseURIScheme($scheme)
+    public static function parseURIScheme($scheme)
     {
         if (preg_match("/^([a-z][a-z0-9+\\-.]*)(:|\$)/i", $scheme, $res)) {
             $result = strtolower($res[1]);
@@ -158,7 +162,7 @@ final class BuiltinURIUtil
      *
      *  @param  array       $parts      The array to extend
      */
-    private function extendAuthority(array &$parts)
+    private static function extendAuthority(array &$parts)
     {
         static $patterns = array(
             /* 00 */ "%1\$s",
@@ -169,7 +173,7 @@ final class BuiltinURIUtil
 
         if (isset($parts[AnyURI::PART_HOST])) {
 
-            $this->extendUserInfo($parts);
+            self::extendUserInfo($parts);
 
             $index = isset($parts[AnyURI::PART_USERINFO]);
             $index <<= 1;
@@ -192,7 +196,7 @@ final class BuiltinURIUtil
      *
      *  @param  array       $parts      The array to extend
      */
-    private function extendUserInfo(array &$parts)
+    private static function extendUserInfo(array &$parts)
     {
         static $patterns = array(
             /* 00 */ "%s",
