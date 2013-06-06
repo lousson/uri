@@ -88,8 +88,7 @@ class GenericURIScheme implements AnyURIScheme
     public static function create(
         $scheme, $abbreviation = null, $name = null)
     {
-        $util = BuiltinURIUtil::getInstance();
-        $mnemonic = $util->parseURIScheme($scheme);
+        $mnemonic = BuiltinURIUtil::parseURIScheme($scheme);
 
         if (null === $abbreviation) {
             $abbreviation = strtoupper($mnemonic);

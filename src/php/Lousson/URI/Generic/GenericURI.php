@@ -45,7 +45,7 @@
 namespace Lousson\URI\Generic;
 
 /** Dependencies: */
-use Lousson\URI\AnyURI;;
+use Lousson\URI\AnyURI;
 use Lousson\URI\Builtin\BuiltinURIUtil;
 
 /**
@@ -76,8 +76,7 @@ class GenericURI implements AnyURI
      */
     public static function create($lexical)
     {
-        $util = BuiltinURIUtil::getInstance();
-        $parts = $util->parseURI($lexical);
+        $parts = BuiltinURIUtil::parseURI($lexical);
         $uri = new static($lexical, $parts);
         return $uri;
     }
