@@ -51,7 +51,7 @@ use Lousson\URI\Generic\GenericURI;
 /**
  *  An abstract test case for URI schemes
  *
- *  @since      lousson/uri-0.1.1
+ *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  *  @link       http://www.phpunit.de/manual/current/en/
  */

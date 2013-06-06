@@ -52,7 +52,7 @@ use Lousson\URI\AnyURIResolver;
  *  Lousson\URI\AnyURIResolver interface as far as possible, without
  *  assuming too many implementation details.
  *
- *  @since      lousson/uri-0.1.1
+ *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  */
 abstract class AbstractURIResolver implements AnyURIResolver

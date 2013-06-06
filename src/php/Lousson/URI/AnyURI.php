@@ -49,7 +49,7 @@ namespace Lousson\URI;
  *
  *  The AnyURI interface declares an API for classes representing URIs.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  *  @link       http://en.wikipedia.org/wiki/Uniform_resource_identifier
  *  @link       http://tools.ietf.org/html/rfc3986

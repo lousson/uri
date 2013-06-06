@@ -52,7 +52,7 @@ use Lousson\AnyException;
  *  by an interface in the Lousson\URI namespace must implement the
  *  AnyURIException interface.
  *
- *  @since      lousson/uri-0.2.0
+ *  @since      lousson/Lousson_URI-0.2.0
  *  @package    org.lousson.uri
  */
 interface AnyURIException extends AnyException

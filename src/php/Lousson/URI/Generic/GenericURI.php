@@ -55,7 +55,7 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
  *  It can represent any well-formed URI, although it doesn't consider
  *  scheme-specific constraints, if any.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
 class GenericURI extends AbstractURI

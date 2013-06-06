@@ -48,7 +48,7 @@ namespace Lousson\URI;
  *  The AnyURIFactory interface declares an API for classes capable of
  *  creating URI, scheme, and resolver instances.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
 interface AnyURIFactory

@@ -1,14 +1,14 @@
 Lousson: URI
 ============
 
-The lousson/uri package consists of entities to represent, validate and
+The `Lousson_URI` package consists of entities to represent, validate and
 transform URNs and URLs.
 
 
 Dependencies
 ------------
 
-The lousson/uri package itself depends on PHPi 5.3+, a(ny) PSR-0
+The `Lousson_URI` package itself depends on PHPi 5.3+, a(ny) PSR-0
 compatible autoload implementation and other Lousson packages:
 
 - **PHP 5.3.0+**:                           http://www.php.net/
@@ -36,7 +36,7 @@ http://pear.lousson.org - thus, one can use the "pear" script to
 install any of them, e.g.:
 
 	pear channel-discover pear.lousson.org
-	pear install lousson/uri
+	pear install lousson/Lousson_URI
 
 The complete sourcecode and version history is avialabe at GitHub.
 One may either visit http://github.com/lousson/uri or clone
@@ -55,7 +55,7 @@ Copyright & License
 -------------------
 
 Unless denoted otherwise, the following terms apply to all software
-provided within the lousson/uri package:
+provided within the `Lousson_URI` package:
 
 	Copyright (c) 2012 - 2013, The Lousson Project
 

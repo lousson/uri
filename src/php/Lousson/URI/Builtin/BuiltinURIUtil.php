@@ -54,7 +54,7 @@ use Lousson\URI\Error\InvalidURIError;
  *  common URI operations, especially those that are required to implement
  *  the interfaces in the Lousson\URI namespace.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
 final class BuiltinURIUtil

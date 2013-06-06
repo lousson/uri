@@ -52,7 +52,7 @@ use Lousson\URI\AnyURIScheme;
  *  AnyURIScheme interface as far as possible, without assuming too many
  *  implementation details.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
 abstract class AbstractURIScheme implements AnyURIScheme

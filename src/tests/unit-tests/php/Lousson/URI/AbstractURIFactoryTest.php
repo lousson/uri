@@ -48,7 +48,7 @@ use PHPUnit_Framework_TestCase;
 /**
  *  An abstract test case for URI factories
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  *  @link       http://www.phpunit.de/manual/current/en/
  */

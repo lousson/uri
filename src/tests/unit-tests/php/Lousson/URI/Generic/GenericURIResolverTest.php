@@ -49,7 +49,7 @@ use Lousson\URI\Builtin\BuiltinURIFactory;
 /**
  *  A test case for generic URI resolvers
  *
- *  @since      lousson/uri-0.1.1
+ *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  *  @link       http://www.phpunit.de/manual/current/en/
  */

@@ -54,7 +54,7 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
  *  although the instance won't be aware of constraints associated with
  *  the scheme specification, if any.
  *
- *  @since      lousson/uri-0.1.0
+ *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
 class GenericURIScheme extends AbstractURIScheme

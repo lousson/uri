@@ -56,7 +56,7 @@ use Lousson\URI\Generic\GenericURI;
  *  AnyURIFacory interface. It has been introduced to provide a builtin
  *  URI resolver, as well as various URI scheme information items.
  *
- *  @since      lousson/uri-0.1.1
+ *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  *  @link       http://www.iana.org/assignments/uri-schemes.html
  */

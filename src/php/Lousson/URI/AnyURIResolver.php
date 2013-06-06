@@ -51,7 +51,7 @@ use Lousson\URI\AnyURI;
  *  The AnyURIResolver interface declares an API for classes that implement
  *  URI resolvers.
  *
- *  @since      lousson/uri-0.1.1
+ *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  */
 interface AnyURIResolver

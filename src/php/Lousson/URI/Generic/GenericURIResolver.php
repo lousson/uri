@@ -56,7 +56,7 @@ use Closure;
  *  interface that is based on a Closure callback mechanism and, therefore,
  *  suitable for implementing any resolver algorithm.
  *
- *  @since      lousson/uri-0.1.1
+ *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  */
 class GenericURIResolver extends AbstractURIResolver

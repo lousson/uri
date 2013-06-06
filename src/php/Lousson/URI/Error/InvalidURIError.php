@@ -53,7 +53,7 @@ use Lousson\Error\InvalidArgumentError;
  *  generic implementations of the uri interfaces in case of any errors
  *  that are caused by invalid uris or arguments passed by the caller.
  *
- *  @since      lousson/uri-0.2.0
+ *  @since      lousson/Lousson_URI-0.2.0
  *  @package    org.lousson.uri
  */
 class InvalidURIError

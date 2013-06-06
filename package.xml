@@ -12,9 +12,9 @@
 
   <name>${project.name}</name>
   <channel>${project.channel}</channel>
-  <summary>entities to operate with URNs and URLs</summary>
+  <summary>Entities to operate with URNs and URLs</summary>
   <description>
-    The lousson/uri package consists of entities to represent, validate and
+    The Lousson_URI package consists of entities to represent, validate and
     transform URNs and URLs.
   </description>
 
@@ -61,14 +61,14 @@ ${contents}
         <max>3.999.9999</max>
       </package>
       <package>
-        <name>sniffs</name>
+        <name>Lousson_Sniffs</name>
         <channel>pear.lousson.org</channel>
-        <min>0.2.0</min>
+        <min>0.4.0</min>
       </package>
       <package>
-        <name>error</name>
+        <name>Lousson_Exception</name>
         <channel>pear.lousson.org</channel>
-        <min>0.1.0</min>
+        <min>0.2.0</min>
       </package>
     </required>
   </dependencies>
