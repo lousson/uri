@@ -45,7 +45,7 @@
 namespace Lousson\URI\Generic;
 
 /** Dependencies: */
-use Lousson\URI\AbstractURI;
+use Lousson\URI\AnyURI;;
 use Lousson\URI\Builtin\BuiltinURIUtil;
 
 /**
@@ -58,7 +58,7 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
  *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
-class GenericURI extends AbstractURI
+class GenericURI implements AnyURI
 {
     /**
      *  Create a generic URI instance
@@ -118,6 +118,20 @@ class GenericURI extends AbstractURI
      *          The URI's lexical representation is returned on success
      */
     final public function getLexical()
+    {
+        return $this->lexical;
+    }
+
+    /**
+     *  Obtain the URI's lexical representation
+     *
+     *  The "magic" method __toString() is an alias for the getLexical()
+     *  method. It returns the lexical representation of the URI instance.
+     *
+     *  @return string
+     *          The URI's lexical representation is returned on success
+     */
+    final public function __toString()
     {
         return $this->lexical;
     }

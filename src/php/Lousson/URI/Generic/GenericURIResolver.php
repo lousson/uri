@@ -43,10 +43,9 @@
 namespace Lousson\URI\Generic;
 
 /** Dependencies: */
+use Lousson\URI\AnyURIResolver;
 use Lousson\URI\AnyURI;
-use Lousson\URI\AnyURIFactory;
-use Lousson\URI\AbstractURIResolver;
-use Lousson\URI\Generic\GenericURIFactory;
+use Lousson\URI\Builtin\BuiltinURIFactory;
 use Closure;
 
 /**
@@ -59,7 +58,7 @@ use Closure;
  *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
  */
-class GenericURIResolver extends AbstractURIResolver
+class GenericURIResolver implements AnyURIResolver
 {
     /**
      *  Create an URI resolver instance
@@ -68,13 +67,10 @@ class GenericURIResolver extends AbstractURIResolver
      *  resolver, using the provided $callback to actually perform the
      *  operation behind the resolveURI() method.
      *
-     *  @param  \Lousson\URI\AnyURIFactory  $factory    The URI factory
      *  @param  \Closure                    $callback   The URI callback
      */
-    public function __construct(
-         AnyURIFactory $factory, Closure $callback)
+    public function __construct(Closure $callback)
     {
-        $this->factory = $factory;
         $this->callback = $callback;
     }
 
@@ -88,7 +84,34 @@ class GenericURIResolver extends AbstractURIResolver
      */
     public function getURIFactory()
     {
-        return $this->factory;
+        $factory = new BuiltinURIFactory();
+        return $factory;
+    }
+
+    /**
+     *  Resolve an URI string
+     *
+     *  The resolve() method analyzes the given $lexical URI and returns a
+     *  list of zero or more items, each of whose is an URI string itself,
+     *  representing a distinct resolved form of the $uri.
+     *  In case there resolve does not implement a process to resolve URIs
+     *  of the particuar type, it returns an empty array.
+     *
+     *  @param  string      $lexical    The URI string to resovle
+     *
+     *  @return array
+     *          A list of URI strings is returned on success
+     *
+     *  @throws \Lousson\URI\AnyURIException
+     *          Raised in case the $lexical URI is malformed or invalid
+     *          in general, or in if an internal error is encountered
+     */
+    final public function resolve($lexical)
+    {
+        $factory = $this->getURIFactory();
+        $uri = $factory->getURI($lexical);
+        $uriList = $this->resolveURI($uri);
+        return $uriList;
     }
 
     /**
@@ -115,13 +138,6 @@ class GenericURIResolver extends AbstractURIResolver
         $uriList = $callback($uri);
         return $uriList;
     }
-
-    /**
-     *  The URI factory
-     *
-     *  @var \Lousson\URI\AnyURIFactory
-     */
-    private $factory;
 
     /**
      *  The resolver callback

@@ -43,7 +43,7 @@
 namespace Lousson\URI\Generic;
 
 /** Dependencies: */
-use Lousson\URI\AbstractURIScheme;
+use Lousson\URI\AnyURIScheme;
 use Lousson\URI\Builtin\BuiltinURIUtil;
 
 /**
@@ -57,7 +57,7 @@ use Lousson\URI\Builtin\BuiltinURIUtil;
  *  @since      lousson/Lousson_URI-0.1.0
  *  @package    org.lousson.uri
  */
-class GenericURIScheme extends AbstractURIScheme
+class GenericURIScheme implements AnyURIScheme
 {
     /**
      *  A filter for valid name type bitmasks
@@ -142,6 +142,20 @@ class GenericURIScheme extends AbstractURIScheme
         $name = $this->{$property};
 
         return $name;
+    }
+
+    /**
+     *  An alias for getName()
+     *
+     *  The "magic" method __toString() is an alias or shortcut for an
+     *  invocation of getName() with AnyURIScheme::NAME_TYPE_MNEMONIC.
+     *
+     *  @return string
+     *          The name of the URI scheme is returned on success
+     */
+    final public function __toString()
+    {
+        return $this->getName(self::NAME_TYPE_MNEMONIC);
     }
 
     /**

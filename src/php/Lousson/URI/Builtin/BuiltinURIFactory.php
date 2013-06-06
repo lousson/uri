@@ -130,7 +130,7 @@ class BuiltinURIFactory implements AnyURIFactory
             return $result;
         };
 
-        $resolver = new GenericURIResolver($this, $callback);
+        $resolver = new GenericURIResolver($callback);
         return $resolver;
     }
 
