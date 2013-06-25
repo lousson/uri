@@ -1,6 +1,8 @@
 Lousson: URI
 ============
 
+![Build Status](https://travis-ci.org/lousson/uri.png?branch=master)
+
 The `Lousson_URI` package consists of entities to represent, validate and
 transform URNs and URLs.
 
@@ -42,7 +44,7 @@ The complete sourcecode and version history is avialabe at GitHub.
 One may either visit http://github.com/lousson/uri or clone
 the source tree directly:
 
-	git clone git@github.com:lousson/uri.git
+	git clone https://github.com/lousson/uri.git
 
 GitHub is also used to track issues like bugs and feature-requests:
 
