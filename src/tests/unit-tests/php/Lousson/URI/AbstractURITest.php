@@ -114,12 +114,12 @@ abstract class AbstractURITest extends AbstractURIFactoryTest
     /**
      *  Provide invalid URIs
      *
-     *  The provideInvalidURIs() method is a data provider for test-methods
+     *  The provideURIArguments() method is a data provider for test-methods
      *  expecting one parameter; an invalid URI string.
      *
      *  @return array
      */
-    public function provideInvalidURIs()
+    public function provideURIArguments()
     {
         $uriList = $this->getMalformedURIs();
         $parameters = array();
@@ -186,7 +186,7 @@ abstract class AbstractURITest extends AbstractURIFactoryTest
      *
      *  @param  string      $lexical    The URIs lexical representation
      *
-     *  @dataProvider       provideInvalidURIs
+     *  @dataProvider       provideURIArguments
      *  @expectedException  Lousson\URI\AnyURIException
      *  @test
      *

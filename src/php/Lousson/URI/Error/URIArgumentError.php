@@ -32,7 +32,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**
- *  Lousson\URI\Error\InvalidURIError class definition
+ *  Lousson\URI\Error\URIArgumentError class definition
  *
  *  @package    org.lousson.uri
  *  @copyright  (c) 2013, The Lousson Project
@@ -49,14 +49,14 @@ use Lousson\Error\InvalidArgumentError;
 /**
  *  An exception type for invalid URIs
  *
- *  The InvalidURIError is an exception type raised by the builtin and
+ *  The URIArgumentError is an exception type raised by the builtin and
  *  generic implementations of the uri interfaces in case of any errors
  *  that are caused by invalid uris or arguments passed by the caller.
  *
  *  @since      lousson/Lousson_URI-0.2.0
  *  @package    org.lousson.uri
  */
-class InvalidURIError
+class URIArgumentError
     extends InvalidArgumentError
     implements AnyURIException
 {

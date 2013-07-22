@@ -45,7 +45,7 @@ namespace Lousson\URI\Builtin;
 
 /** Dependencies: */
 use Lousson\URI\AnyURI;
-use Lousson\URI\Error\InvalidURIError;
+use Lousson\URI\Error\URIArgumentError;
 
 /**
  *  Utilities for common URI operations
@@ -100,7 +100,7 @@ final class BuiltinURIUtil
      *  @return array
      *          The URI parts are returned on success
      *
-     *  @throws \Lousson\URI\Error\InvalidURIError
+     *  @throws \Lousson\URI\Error\URIArgumentError
      *          Raised in case the URI is malformed or not prefixed with
      *          an URI scheme (including the colon)
      */
@@ -115,12 +115,12 @@ final class BuiltinURIUtil
 
         if (!$parts) {
             $message = "Malformed URI: \"{$lexical}\" - {$errormsg}";
-            throw new InvalidURIError($message);
+            throw new URIArgumentError($message);
         }
 
         if (!isset($parts["scheme"])) {
             $message = "Missing or invalid URI scheme: \"{$lexical}\"";
-            throw new InvalidURIError($message);
+            throw new URIArgumentError($message);
         }
 
         self::extendAuthority($parts);
@@ -140,7 +140,7 @@ final class BuiltinURIUtil
      *  @return string
      *          The URI scheme mnemonic is returned on success
      *
-     *  @throws \Lousson\URI\Error\InvalidURIError
+     *  @throws \Lousson\URI\Error\URIArgumentError
      *          Raised in case
      */
     public static function parseURIScheme($scheme)
@@ -151,7 +151,7 @@ final class BuiltinURIUtil
         }
 
         $message = "Missing or invalid URI scheme: \"{$scheme}\"";
-        throw new InvalidURIError($message);
+        throw new URIArgumentError($message);
     }
 
     /**

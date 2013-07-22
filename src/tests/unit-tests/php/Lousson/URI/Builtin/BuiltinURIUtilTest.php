@@ -73,12 +73,12 @@ class BuiltinURIUtilTest extends PHPUnit_Framework_TestCase
     /**
      *  Provide invalid URIs
      *
-     *  The provideInvalidURIs() method is a data provider for test-methods
+     *  The provideURIArguments() method is a data provider for test-methods
      *  expecting one parameter; an invalid URI string.
      *
      *  @return array
      */
-    public function provideInvalidURIs()
+    public function provideURIArguments()
     {
         return array(
             array(""),
@@ -140,7 +140,7 @@ class BuiltinURIUtilTest extends PHPUnit_Framework_TestCase
      *
      *  @param  string      $lexical    The URI string
      *
-     *  @dataProvider       provideInvalidURIs
+     *  @dataProvider       provideURIArguments
      *  @expectedException  Lousson\URI\AnyURIException
      *  @test
      *

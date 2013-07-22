@@ -107,12 +107,12 @@ abstract class AbstractURISchemeTest extends AbstractURIFactoryTest
     /**
      *  Provide invalid URI scheme names
      *
-     *  The provideInvalidURISchemeNames() method is a data provider for
+     *  The provideURIArgumentSchemeNames() method is a data provider for
      *  test-methods expecting one parameter; an invalid URI scheme name.
      *
      *  @return array
      */
-    public function provideInvalidURISchemeNames()
+    public function provideURIArgumentSchemeNames()
     {
         $schemeList = $this->getMalformedURISchemes();
         $parameters = array();
@@ -165,7 +165,7 @@ abstract class AbstractURISchemeTest extends AbstractURIFactoryTest
      *
      *  @param  string      $name       The input URI scheme name
      *
-     *  @dataProvider       provideInvalidURISchemeNames
+     *  @dataProvider       provideURIArgumentSchemeNames
      *  @expectedException  Lousson\URI\AnyURIException
      *  @test
      *
