@@ -52,8 +52,9 @@ use Lousson\URI\Builtin\BuiltinURIFactory;
  *  The default URI resolver implementation
  *
  *  The BuiltinURIResolver class is a basic implementation of the
- *  AnyURIResolver interface. It does not actually resolve URIs, but
- *  is very useful a stub- or base-implementation.
+ *  AnyURIResolver interface. By default, it always resolves to the exact
+ *  same URI as invoked with, but one can provide an associative map of
+ *  regular expressions to aggregate new URIs.
  *
  *  @since      lousson/Lousson_URI-0.1.1
  *  @package    org.lousson.uri
@@ -90,6 +91,35 @@ class BuiltinURIResolver implements AnyURIResolver
     final public function getURIFactory()
     {
         return $this->factory;
+    }
+
+    /**
+     *  Update the patterns associated
+     *
+     *  The setPatterns() method is used to assign a map of patterns to the
+     *  URI resolver, where each key is a regular expression and each value
+     *  is the associated replacement (see preg_replace()).
+     *
+     *  @param  array               $map            The map of URI patterns
+     */
+    public function setPatterns(array $map)
+    {
+        $this->patterns = array_map("strval", $map);
+        $this->patterns = array_filter($this->patterns, "is_string");
+    }
+
+    /**
+     *  Obtain the patterns associated
+     *
+     *  The getPatterns() method is used to obtain the map of patterns
+     *  associated with the URI resolver, if any.
+     *
+     *  @return array
+     *          A map of URI patterns is returned on success
+     */
+    public function getPatterns()
+    {
+        return $this->patterns;
     }
 
     /**
@@ -138,7 +168,18 @@ class BuiltinURIResolver implements AnyURIResolver
      */
     public function resolveURI(AnyURI $uri)
     {
-        $uriList = array($uri);
+        $lexical = (string) $uri;
+        $factory = $this->getURIFactory();
+        $uriList = array();
+
+        foreach ($this->getPatterns() as $regex => $replacement) {
+            if (preg_match($regex, $lexical)) {
+                $prototype = preg_replace($regex, $replacement, $lexical);
+                $uriList[] = $factory->getURI($prototype);
+            }
+        }
+
+        $uriList[] = $uri;
         return $uriList;
     }
 
@@ -148,5 +189,12 @@ class BuiltinURIResolver implements AnyURIResolver
      *  @var \Lousson\URI\AnyURIFactory
      */
     private $factory;
+
+    /**
+     *  The URI pattern map
+     *
+     *  @var array
+     */
+    private $patterns = array();
 }
 

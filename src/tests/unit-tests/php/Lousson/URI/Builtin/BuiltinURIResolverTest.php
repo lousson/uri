@@ -68,5 +68,74 @@ class BuiltinURIResolverTest extends AbstractURIResolverTest
         $factory = new BuiltinURIFactory();
         return $factory;
     }
+
+    /**
+     *  Provide test parameters for testResolveURIMap()
+     *
+     *  The provideMapParameters() method returns an array of multiple
+     *  items, each of whose is a set of valid parameters for the
+     *  testResolveURIMap() method.
+     *
+     *  @return array
+     *          A list of test parameters is returned on success
+     */
+    public function provideMapParameters()
+    {
+        $map = array(
+            "/test/" => "TEST",
+            "/foo:(baz)/" => "foo:bar:\$1"
+        );
+
+        $p[] = array($map, "urn:foo:bar", array("urn:foo:bar"));
+        $p[] = array($map, "urn:lousson:test", array(
+            "urn:lousson:TEST",
+            "urn:lousson:test"
+        ));
+
+        $p[] = array($map, "urn:foo:bazz", array(
+            "urn:foo:bar:bazz",
+            "urn:foo:bazz"
+        ));
+
+        $p[] = array(array(), "urn:foo:bar", array("urn:foo:bar"));
+
+        return $p;
+    }
+
+    /**
+     *  Test the pattern mechanism
+     *
+     *  The testResolveURIMap() method is a smoke test for the pattern
+     *  mechanism that has been introduced in Lousson_URI-1.2.0.
+     *
+     *  @param  array               $map            The URI pattern map
+     *  @param  string              $uri            The URI to resolve
+     *  @param  array               $expected       The expected results
+     *
+     *  @dataProvider       provideMapParameters
+     *  @test
+     *
+     *  @throws \PHPUnit_Framework_AssertionFailedError
+     *          Raised in case an assertion has failed
+     *
+     *  @throws \Exception
+     *          Raised in case of an implementation error
+     */
+    public function testResolveURIMap(array $map, $uri, array $expected)
+    {
+        $resolver = $this->getURIResolver();
+        $resolver->setPatterns($map);
+
+        $uriList = $resolver->resolve($uri);
+
+        foreach ($uriList as $item) {
+            $this->assertInstanceOf("Lousson\\URI\\AnyURI", $item);
+        }
+
+        $expected = array_map("strval", $expected);
+        $resolved = array_map("strval", $uriList);
+
+        $this->assertEquals($expected, $resolved);
+    }
 }
 
